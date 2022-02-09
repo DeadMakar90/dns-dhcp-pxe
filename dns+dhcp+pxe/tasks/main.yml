@@ -1,0 +1,4 @@
+---
+- include_tasks: dns.yml
+- include_tasks: dhcp.yml
+- include_tasks: pxe.yml

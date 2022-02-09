@@ -1,0 +1,33 @@
+---
+- name: install dns_server
+  apt: 
+  pkg: "{{dns_packages}}"
+  state: present
+
+- name: bind9 forward_config
+  template: 
+    src: named.conf.option.j2
+    dest: /etc/bind/named.conf.option
+
+- name: bind9 zome options config
+  template: 
+    src: named.conf.local.j2
+    dect: /etc/bind/named.conf.local
+
+- name: forward zone config
+  template:
+   src: forward.bind.j2
+   dest: /var/lib/bind/forward.bind
+
+- name: reverse zone config
+  template:
+   src: reverse.bind.j2
+   dest: /var/lib/bind/reverse.bind
+
+- name: bind9 restart
+  service: 
+   name: bind9
+   state: restarted
+
+
+

@@ -1,0 +1,9 @@
+zone "kva-kva.org" {
+        type master;
+        file "/etc/bind/forward.bind";
+   };
+
+zone "15.168.192.in-addr.arpa" {
+      type master;
+      file "/etc/bind/reverse.bind";
+};

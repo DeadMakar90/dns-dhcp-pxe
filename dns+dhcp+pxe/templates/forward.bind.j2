@@ -1,0 +1,23 @@
+$TTL 604800
+
+@       IN      SOA dns.kva-kva.org.  root.dns.kva-kva.org. (
+                        2       ;Serial
+                        604800  ;Refresh
+                        86400   ;Retry
+                        2419200 ;Expire
+                        604800 ) ; Negative Cache TTL
+
+;
+@               IN      NS      dns.kva-kva.org.
+
+ansible                 A       192.168.15.6
+cn1                     A       192.168.15.14
+cn2                     A       192.168.15.15
+cn3                     A       192.168.15.16
+cn4                     A       192.168.15.17
+dns                     A       192.168.15.5
+master                  A       192.168.15.7
+sql                     A       192.168.15.13
+web                     A       192.168.15.12
+web01                   A       192.168.15.10
+web02                   A       192.168.15.11

@@ -1,0 +1,11 @@
+---
+dns_packages:
+                - htop
+                - vim
+                - mc
+                - bind9
+                - dnsutils
+pxe:            
+                - tftpd-hpa
+                - pxelinux
+                - syslinux

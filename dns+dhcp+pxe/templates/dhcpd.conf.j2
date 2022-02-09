@@ -1,0 +1,48 @@
+default-lease-time 600;
+max-lease-time 7200;
+authoritative;
+log-facility local7;
+ddns-updates on;
+ddns-update-style interim;
+update-static-leases on;
+
+key rndc-key {
+algorithm hmac-sha256;
+secret "";
+}
+
+zone kva-kva.org {
+primary 192.168.15.5;
+key rndc-key;
+}
+zone 15.168.192.in-addr.arpa {
+primary 192.168.15.5;
+key rndc-key;
+}
+allow booting;
+allow bootp;
+option fqdn.no-client-update    on;
+option fqdn.rcode2            255;
+option pxegrub code 150 = text ;
+
+next-server 192.168.15.5;
+option architecture code 93 = unsigned integer 16 ;
+if option architecture = 00:07 {
+  filename "bootnetx64.efi";
+} elsif option architecture = 00:09 {
+  filename "bootnetx64.efi";
+} else {
+  filename "pxelinux.0";
+}
+
+
+
+# A slightly different configuration for an internal subnet.
+subnet 192.168.15.0 netmask 255.255.255.0 {
+  range 192.168.15.20 192.168.15.60;
+  option domain-name-servers 192.168.15.5;
+  option domain-name "kva-kva.org";
+  option routers 192.168.15.4;
+  option broadcast-address 192.168.15.255;
+  default-lease-time 600;
+  max-lease-time 7200;
