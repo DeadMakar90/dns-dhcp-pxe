@@ -6,11 +6,11 @@
 - name: download net_installer debian
   get_url:
    url: https://deb.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/netboot.tar.gz
-   dest: /srv/tftp/
+   dest: /tmp
 
 - name: unzip net_installer
   command: 
-    cmd: cd /srv/tftp/ && tar xfz netboot.tar.gz
+    cmd: tar xfz /tmp/netboot.tar.gz /srv/tftp
 
 - name: ln
   command:
