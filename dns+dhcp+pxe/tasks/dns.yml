@@ -1,8 +1,8 @@
 ---
 - name: install dns_server
   apt: 
-  pkg: "{{dns_packages}}"
-  state: present
+   pkg: "{{dns_packages}}"
+   state: present
 
 - name: bind9 forward_config
   template: 
