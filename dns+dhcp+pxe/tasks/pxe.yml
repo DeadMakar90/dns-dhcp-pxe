@@ -1,19 +1,22 @@
 - name: install pxe packages
   apt:
-  pkg: "{{pxe}}"
-  state: present
+   pkg: "{{pxe}}"
+   state: present
 
 - name: download net_installer debian
-  get_url: https://deb.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/netboot.tar.gz
-  dest: /srv/tftp/
+  get_url:
+   url: https://deb.debian.org/debian/dists/bullseye/main/installer-amd64/current/images/netboot/netboot.tar.gz
+   dest: /srv/tftp/
 
 - name: unzip net_installer
   command: 
     cmd: cd /srv/tftp/ && tar xfz netboot.tar.gz
 
-- name: pxe config
+- name: ln
   command:
     cmd: ln -s /srv/tftp/debian-installer/amd64/bootnetx64.efi /srv/tftp/
+    
+- name: pxe config
   template:
     scr: txt.cfg.j2
     dest: /srv/tftp/debian-installer/amd64/boot-screens/txt.cfg
