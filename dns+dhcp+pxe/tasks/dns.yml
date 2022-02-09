@@ -12,7 +12,7 @@
 - name: bind9 zome options config
   template: 
     src: named.conf.local.j2
-    dect: /etc/bind/named.conf.local
+    dest: /etc/bind/named.conf.local
 
 - name: forward zone config
   template:
