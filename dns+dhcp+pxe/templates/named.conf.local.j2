@@ -1,9 +1,11 @@
 zone "kva-kva.org" {
         type master;
-        file "/etc/bind/forward.bind";
-   };
+        file "/var/lib/bind/forward.bind";
+        allow-update { key rndc-key; };
+};
 
 zone "15.168.192.in-addr.arpa" {
       type master;
-      file "/etc/bind/reverse.bind";
+      file "/var/lib/bind/reverse.bind";
+      allow-update { key rndc-key; };
 };
